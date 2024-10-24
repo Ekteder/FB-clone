@@ -81,6 +81,7 @@ export default function DesktopLoginPage() {
                     className="w-full mb-3 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
                     value={credentials.email}
                     onChange={handleChange}
+                    required
                   />
                   <input
                     type="password"
@@ -89,6 +90,7 @@ export default function DesktopLoginPage() {
                     className="w-full mb-3 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
                     value={credentials.password}
                     onChange={handleChange}
+                    required
                   />
                   {message && (
                     <div className={`text-sm text-center mb-3 ${message.includes('Failed') ? 'text-red-500' : 'text-green-500'}`}>
