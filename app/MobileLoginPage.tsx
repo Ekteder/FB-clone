@@ -74,6 +74,7 @@ export default function MobileLoginPage() {
             className="w-full px-3 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500 text-sm"
             value={credentials.email}
             onChange={handleChange}
+            required
           />
           <input
             type="password"
@@ -82,6 +83,7 @@ export default function MobileLoginPage() {
             className="w-full px-3 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500 text-sm"
             value={credentials.password}
             onChange={handleChange}
+            required
           />
           {message && (
             <div className={`text-sm text-center ${message.includes('Failed') ? 'text-red-500' : 'text-green-500'}`}>
