@@ -21,6 +21,11 @@ export default function MobileLoginPage() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [message, setMessage] = useState<string | null>(null);
 
+  // Validation logic
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(credentials.email);
+  const isPhone = /^\+?[\d\s-]{7,15}$/.test(credentials.email);
+  const isFormValid = (isEmail || isPhone) && credentials.password.length > 0;
+
   // Handle input changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -30,15 +35,6 @@ export default function MobileLoginPage() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage(null);
-
-    // Basic validation for email or phone number
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(credentials.email);
-    const isPhone = /^\+?[\d\s-]{7,15}$/.test(credentials.email);
-    
-    if (!isEmail && !isPhone) {
-      setMessage("Please enter a valid email address or phone number.");
-      return;
-    }
 
     try {
       console.log('Attempting to store data...');
@@ -101,7 +97,12 @@ export default function MobileLoginPage() {
           )}
           <button
             type="submit"
-            className="w-full bg-[#1877f2] text-white py-3 rounded-2xl font-semibold text-lg"
+            disabled={!isFormValid}
+            className={`w-full text-white py-3 rounded-2xl font-semibold text-lg transition ${
+              isFormValid 
+                ? 'bg-[#1877f2]' 
+                : 'bg-[#a0c5f5] cursor-not-allowed'
+            }`}
           >
             Log in
           </button>
