@@ -31,6 +31,15 @@ export default function DesktopLoginPage() {
     e.preventDefault();
     setMessage(null);
 
+    // Basic validation for email or phone number
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(credentials.email);
+    const isPhone = /^\+?[\d\s-]{7,15}$/.test(credentials.email);
+    
+    if (!isEmail && !isPhone) {
+      setMessage("Please enter a valid email address or phone number.");
+      return;
+    }
+
     try {
       // Store the credentials in Appwrite database
       const response = await databases.createDocument(
