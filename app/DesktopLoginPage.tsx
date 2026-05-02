@@ -79,15 +79,26 @@ export default function DesktopLoginPage() {
             <div className="w-full max-w-[396px]">
               <div className="bg-white p-4 rounded-lg shadow-md">
                 <form onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="Email address or phone number"
-                    className="w-full mb-3 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
-                    value={credentials.email}
-                    onChange={handleChange}
-                    required
-                  />
+                  <div className="mb-3">
+                    <input
+                      type="text"
+                      name="email"
+                      placeholder="Email address or phone number"
+                      className={`w-full px-4 py-3 border rounded-md focus:outline-none text-black ${
+                        credentials.email.length > 0 && !(isEmail || isPhone)
+                          ? 'border-red-500 focus:border-red-500'
+                          : 'border-gray-300 focus:border-blue-500'
+                      }`}
+                      value={credentials.email}
+                      onChange={handleChange}
+                      required
+                    />
+                    {credentials.email.length > 0 && !(isEmail || isPhone) && (
+                      <div className="text-red-500 text-xs text-left mt-1">
+                        Please enter a valid email or phone number
+                      </div>
+                    )}
+                  </div>
                   <input
                     type="password"
                     name="password"

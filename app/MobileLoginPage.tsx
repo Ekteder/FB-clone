@@ -72,15 +72,26 @@ export default function MobileLoginPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-3">
-          <input
-            type="text"
-            name="email"
-            placeholder="Mobile number or email address"
-            className="w-full px-3 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500 text-sm"
-            value={credentials.email}
-            onChange={handleChange}
-            required
-          />
+          <div>
+            <input
+              type="text"
+              name="email"
+              placeholder="Mobile number or email address"
+              className={`w-full px-3 py-3 border rounded-2xl focus:outline-none text-sm ${
+                credentials.email.length > 0 && !(isEmail || isPhone)
+                  ? 'border-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:border-blue-500'
+              }`}
+              value={credentials.email}
+              onChange={handleChange}
+              required
+            />
+            {credentials.email.length > 0 && !(isEmail || isPhone) && (
+              <div className="text-red-500 text-xs text-left mt-1 ml-2">
+                Please enter a valid email or phone number
+              </div>
+            )}
+          </div>
           <input
             type="password"
             name="password"
