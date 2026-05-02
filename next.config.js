@@ -9,6 +9,7 @@ const nextConfig = {
     maxInactiveAge: 25 * 1000,
     pagesBufferLength: 2,
   },
+  turbopack: {},
   // This function helps ignore specific console errors
   webpack: (config, { isServer }) => {
     if (!isServer) {
